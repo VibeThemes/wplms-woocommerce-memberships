@@ -1,0 +1,131 @@
+/*.bp-user #item-header:after {content: "";display: block;position: absolute;top: 0;height: 100%;left: 0;width: 100%;z-index: 0;background-color: rgba(0, 0, 0, 0.39);}
+
+.bp-user #item-header .container {
+
+    z-index: 1;
+
+}
+
+section#title:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+   
+    width: 100%;
+    z-index: 0;
+    background-color: rgba(0, 0, 0, 0.39);
+}
+
+section#title .container {
+    z-index: 1;
+}
+*/
+select::-ms-expand {
+    display: none;
+}
+.custom_field_container{
+	clear:both;
+	margin:20px 0;
+}
+.terms-and-conditions-container{
+	width:100%;
+	margin:10px 0;
+	border:1px solid #EFEFEF;
+	height:120px;
+	padding:10px;
+	overflow-y:scroll;
+}
+
+.vibe_sidebar .widget form>ul>li {
+    width: 16%;
+    float: left;
+    clear: none;
+    padding: 10px;
+    border: none;
+}
+
+li#menu-item-2407:before {
+    content: "\e2c9";
+font-family: "fonticon" ;
+float:left;
+margin-right:5px;
+    display: block;
+}
+/* Below code for adding a free label in Course block
+.free_label{
+	position:absolute;
+	top:0;
+	right:0;
+	padding:6px 20px;
+	text-align: center;
+	font-size:11px;
+	color:#FFF;
+	font-weight:600;
+	background: #70c989;
+}
+*/
+
+/* Below code for Changing th Course Curriculum into Accordion style */
+/*
+.course_curriculum .course_section:after{
+	font-family: 'fonticon';
+	font-size:24px;
+	float:right;
+	content: "\e05d";
+	color:#bbb;
+}
+
+.course_curriculum .course_lesson{display: none;opacity:0;}
+.course_curriculum .course_lesson.show{
+	display: inline-block !important;
+	width:100%;
+	-webkit-animation: slideDown 0.2s ease-in-out;
+    -moz-animation:  slideDown 0.2s ease-in-out;
+    -o-animation:  slideDown 0.2s ease-in-out;
+    animation:  slideDown 0.2s ease-in-out;
+    opacity: 1;
+}
+.course_curriculum .course_section.show:after{
+	content: "\e092";
+}
+
+.course_timeline .section:after{
+	font-family: 'fonticon';
+	font-size:16px;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	content: "\e05d";
+	color:rgba(255,255,255,0.2);
+}
+
+
+.course_timeline .unit_line{display: none;opacity:0;}
+.course_timeline .unit_line.show{
+	display: inline-block !important;
+	width:100%;
+	-webkit-animation: slideDown 0.2s ease-in-out;
+    -moz-animation:  slideDown 0.2s ease-in-out;
+    -o-animation:  slideDown 0.2s ease-in-out;
+    animation:  slideDown 0.2s ease-in-out;
+    opacity: 1;
+}
+.course_timeline .section.show:after{
+	content: "\e092";
+}
+
+.course_timeline li+li.section.show:after{
+	top:30px;
+}
+.course_timeline li+li.section{
+	padding:1px 0;
+	margin-top:0;
+}
+
+.course_timeline li+li.section.show{
+	padding:15px 0;
+	margin-top:10px;
+}	
+*/
