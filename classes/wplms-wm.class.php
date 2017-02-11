@@ -144,7 +144,7 @@ if(!class_exists('Wplms_Wm_Class'))
             global $post;
             ?>
             <p class="form-field">
-                <label for="_wplms_course_primary_product"><?php esc_html_e( 'Course primary product:', 'wplms-wcm' ); ?></label>
+                <label for="wplms_course_primary_product"><?php esc_html_e( 'Course primary product:', 'wplms-wcm' ); ?></label>
 
                 <input type="hidden"
                        name="wplms_course_primary_product"
