@@ -1,10 +1,18 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 if(!class_exists('Wplms_Wm_Class'))
 {   
 
     class Wplms_Wm_Class // We'll use this just to avoid function name conflicts 
     {
-            
+        public static $instance;
+        public static function init(){
+            if ( is_null( self::$instance ) )
+                self::$instance = new Wplms_Wm_Class();
+            return self::$instance;
+        }   
         public function __construct(){ 
             //settings added and saved 
             add_action('wplms_course_metabox',array($this,'add_wcm_membership_settings_backend'));
@@ -31,10 +39,10 @@ if(!class_exists('Wplms_Wm_Class'))
 
         } // END public function __construct
 
-        public function activate(){
+        function activate(){
             // ADD Custom Code which you want to run when the plugin is activated
         }
-        public function deactivate(){
+        function deactivate(){
             // ADD Custom Code which you want to run when the plugin is de-activated    
         }
 
@@ -156,16 +164,16 @@ if(!class_exists('Wplms_Wm_Class'))
                        data-selected="<?php
                             $product_id = array_filter( array_map( 'absint', (array) get_post_meta( $post->ID, 'wplms_course_primary_product', true ) ) );
                             $json_id    = '';
-  
-
-                                $product = wc_get_product( $product_id[0] );
-
+                                $product = array();
+                                if(!empty($product_id[0])){
+                                    $product = wc_get_product( $product_id[0] );
+                                }
                                 if ( is_object( $product ) ) {
                                     $json_id = wp_kses_post( html_entity_decode( $product->get_formatted_name() ) );
                                 }
                             echo $json_id  ;
                              ?>" 
-                       value="<?php echo esc_attr( $product_id[0] ); ?>" />
+                       value="<?php echo (!empty($product_id[0]))?esc_attr( $product_id[0] ):''; ?>" />
                        <script>
                        jQuery(".js-ajax-select-product").select2({
                             placeholder: "Search for a product",
@@ -228,7 +236,6 @@ if(!class_exists('Wplms_Wm_Class'))
                     }
                 }
             }
-            //print_r( $credits);
             return $credits;
         }
 
@@ -315,6 +322,4 @@ if(!class_exists('Wplms_Wm_Class'))
 
     } // END class Wplms_Wm_Class
 } // END if(!class_exists('Wplms_Wm_Class'))
-
-?>
 
