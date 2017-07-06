@@ -154,7 +154,7 @@ if(!class_exists('Wplms_Wm_Class'))
             <p class="form-field">
                 <label for="wplms_course_primary_product"><?php esc_html_e( 'Course primary product:', 'wplms-wcm' ); ?></label>
 
-                <input type="hidden"
+                <select type="hidden"
                        name="wplms_course_primary_product"
                        id="wplms_course_primary_product"
                        class="js-ajax-select-product"
@@ -173,34 +173,28 @@ if(!class_exists('Wplms_Wm_Class'))
                                 }
                             echo $json_id  ;
                              ?>" 
-                       value="<?php echo (!empty($product_id[0]))?esc_attr( $product_id[0] ):''; ?>" />
+                        >
+                       <?php echo (!empty($product_id[0]))?'<option selected="selected" value="'.esc_attr( $product_id[0] ).'">'. $json_id .'</option>':''; ?>">
+                       </select>
                        <script>
                        jQuery(".js-ajax-select-product").select2({
                             placeholder: "Search for a product",
                             minimumInputLength: 1,
-                            escapeMarkup: function(a) {
-                                return a
-                            },
+                           
                             allowClear: true,
-                            initSelection : function(a, b) {
-                                var c = {
-                                    id: a.val(),
-                                    text: a.attr("data-selected")
-                                };
-                                return b(c)
-                            },
+                            
                             ajax: {
                                 url: wc_memberships_admin.ajax_url,
                                 dataType: 'json',
                                 data: function (term, page) {
                                     return {
-                                    term: term, // search term
+                                    term: term.term, // search term
                                     action:"woocommerce_json_search_products_and_variations",
                                     security:wc_memberships_admin.search_products_nonce,
                                     screen:"wc_membership_plan"
                                 };},
                               
-                                results: function(data, page) {
+                                processResults: function(data, page) {
                                     var d;
                                     return d = [], data && jQuery.each(data, function(a, b) {
                                         return d.push({
