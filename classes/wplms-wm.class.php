@@ -49,29 +49,39 @@ if(!class_exists('Wplms_Wm_Class'))
         function provide_access_course_button($course_id,$user_id){
             if(!is_user_logged_in())
                 return;
-            if(wplms_user_course_active_check($user_id ,$course_id ))
+            
+            /*if(wplms_user_course_active_check($user_id ,$course_id ))
                 return;
+                */
             $membership_plans = get_post_meta($course_id,'vibe_wcm_plans',true);
 
             if(!empty($membership_plans) && is_array($membership_plans)){
-
+                $flag = false;
                 foreach($membership_plans as $membership_plan){
                     //Check if user is a member of the membership and it is Active
                     if(wc_memberships_is_user_member($user_id, $membership_plan ) && wc_memberships_is_user_active_member( $user_id, $membership_plan )){
-                        if(function_exists('bp_course_add_user_to_course') && function_exists('wplms_user_course_active_check')){
+                        $flag=true;
+                        break;
+                    }else{
+                        $flag = false;
+                    }
+                }
 
-                            if(!wplms_user_course_active_check($user_id ,$course_id )){
+                if($flag){
+                    if(function_exists('bp_course_add_user_to_course') && function_exists('wplms_user_course_active_check')){
 
-                                $access_length = get_post_meta( $membership_plan, '_access_length', true );
-                               $access_length = explode(' ',$access_length);
-                               $access_duration = $access_length[0];
-                               $access_duration_parameter_string = (isset($access_length[1])?$access_length[1]:$access_length[0]);
-                               $access_duration_parameter = $this->access_length_into_sceonds($access_duration_parameter_string);
-                               $duration = $access_duration_parameter*$access_duration;
-                                bp_course_add_user_to_course($user_id,$course_id ,$duration);
-                            }
+                        if(!wplms_user_course_active_check($user_id ,$course_id )){
+
+                            $access_length = get_post_meta( $membership_plan, '_access_length', true );
+                           $access_length = explode(' ',$access_length);
+                           $access_duration = $access_length[0];
+                           $access_duration_parameter_string = (isset($access_length[1])?$access_length[1]:$access_length[0]);
+                           $access_duration_parameter = $this->access_length_into_sceonds($access_duration_parameter_string);
+                           $duration = $access_duration_parameter*$access_duration;
+                            bp_course_add_user_to_course($user_id,$course_id ,$duration);
                         }
-                    } 
+                    }
+                    
                 }
             }
         }
