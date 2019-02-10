@@ -3,7 +3,7 @@
 Plugin Name: WPLMS woocommerce membership addon
 Plugin URI: http://www.Vibethemes.com
 Description: woocommerce memberships addon plugin
-Version: 1.1
+Version: 1.0
 Author: VibeThemes
 Author URI: http://www.vibethemes.com
 License: GPL2

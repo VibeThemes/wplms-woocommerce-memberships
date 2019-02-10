@@ -2,21 +2,28 @@
 Contributors: vibethemes
 Tags: ga, google analytics, wplms, wplms ga
 Requires at least: 3.6
-Tested up to: 4.7.3
+Tested up to: 5.0.3
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WPLMS woocommerce membership addon is an integration of WooCommerce Memberships with WPLMS
+WPLMS woocommerce membership addon is an integration of WooCommerce Memberships with WPLMS Learning management system for WordPress.
 
 == Description ==
 WPLMS woocommerce membership addon plugin is developed for integrating WPLMS theme with WooCommerce Memberships. This plugin allows you to sell courses via WooCommerce Memberships.
 
-Tutorial On how to setup and get started : <a href="https://vibethemes.com/documentation/wplms/knowledge-base/woocommerce-membership-integration-with-wplms-addon/">link</a>
+Tutorial On how to setup and get started : <a href="https://wplms.io/support/knowledge-base/woocommerce-membership-integration-with-wplms-addon/">link</a>
+
+Plugin requires :
+
+1. WPLMS : https://themeforest.net/item/wplms-learning-management-system/6780226
+2. WooCommerce : https://wordpress.org/plugins/woocommerce/
+3. WooCommerce Memberships :  https://woocommerce.com/products/woocommerce-memberships/
+
 
 = More Information =
 
-Visit the <a href="https://vibethemes.com/">VibeThemes</a> for documentation, support, and information on getting involved in the project.
+Visit the <a href="https://wplms.io/">WordPress LMS wplms.io</a> for documentation, support, and information on getting involved in the project.
 
 == Installation ==
 
