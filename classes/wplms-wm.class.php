@@ -50,9 +50,9 @@ if(!class_exists('Wplms_Wm_Class'))
             if(!is_user_logged_in())
                 return;
             
-            /*if(wplms_user_course_active_check($user_id ,$course_id ))
+            $check = get_user_meta($user_id,$course_id,true);
+            if(isset($check) && $check > time())
                 return;
-                */
             $membership_plans = get_post_meta($course_id,'vibe_wcm_plans',true);
 
             if(!empty($membership_plans) && is_array($membership_plans)){
