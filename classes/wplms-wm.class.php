@@ -103,7 +103,8 @@ if(!class_exists('Wplms_Wm_Class'))
                 }
 
                 global $wpdb;
-                $courses =$wpdb->get_results($wpdb->prepare("SELECT post_id as course_id  FROM {$wpdb->postmeta} WHERE meta_key ='%s' AND meta_value LIKE '%s'",'vibe_wcm_plans','%"'.$membership_id.'"%'));
+                $like = '%'.$membership_plan->id.'%';
+                $courses=$wpdb->get_results($wpdb->prepare("SELECT post_id as course_id  FROM {$wpdb->postmeta} WHERE meta_key =%s AND meta_value LIKE %s",'vibe_wcm_plans',$like));
 
                 if(!empty($courses)){
                     foreach($courses as $course){
@@ -121,8 +122,11 @@ if(!class_exists('Wplms_Wm_Class'))
         }
 
         function wplms_course_provide_access( $membership_plan, $args ){
+            
             global $wpdb;
-            $membership_courses=$wpdb->get_results($wpdb->prepare("SELECT post_id as course_id  FROM {$wpdb->postmeta} WHERE meta_key ='%s' AND meta_value LIKE '%s'",'vibe_wcm_plans','%"'.$membership_plan->id.'"%'));
+            $like = '%'.$membership_plan->id.'%';
+            $membership_courses=$wpdb->get_results($wpdb->prepare("SELECT post_id as course_id  FROM {$wpdb->postmeta} WHERE meta_key =%s AND meta_value LIKE %s",'vibe_wcm_plans',$like));
+            
            
             if(empty( $membership_courses) || in_array(get_post_status($args['user_membership_id']),array('wcm-cancelled','wcm-expired','wcm-paused','wcm-pending','wcm-complimentary')))
                 return;
@@ -257,10 +261,11 @@ if(!class_exists('Wplms_Wm_Class'))
                             'text'=>__('Woocommerce memberships','wplms-wcm' ),// description
                             'id'  => 'vibe_wcm_plans', // field id and name
                             'type'  => 'multiselect', // type of field
-                            'options'   => $plans
+                            'options'   => $plans,
+                            'from' => 'meta',
                             ));
 
-                array_splice($fields, (count($fields)-1), 0,$arr );
+                array_splice($fields, (count($fields)-3), 0,$arr );
                 $settings['course_pricing']['fields'] = $fields;  
             }
             return $settings;
@@ -285,19 +290,23 @@ if(!class_exists('Wplms_Wm_Class'))
         }
 
         function add_wcm_membership_settings_backend($settings){
-            if(function_exists('wc_memberships_get_membership_plans'))
-            $wcm_plans = wc_memberships_get_membership_plans();
-            $palns = array();
-            foreach($wcm_plans as $wcm_plan){
-                $plans[] = array('value'=>$wcm_plan->id,'label' => $wcm_plan->name);
+        
+            if(function_exists('wc_memberships_get_membership_plans')){
+
+
+                $wcm_plans = wc_memberships_get_membership_plans();
+                $palns = array();
+                foreach($wcm_plans as $wcm_plan){
+                    $plans[] = array('value'=>$wcm_plan->id,'label' => $wcm_plan->name);
+                }
+                $settings['vibe_wcm_plans'] = array(
+                    'label' => __('Woocommerce memberships','wplms-wcm'), // <label>
+                    'desc'  => __('Select woocommerce membership levels here','wplms-wcm'), // description
+                    'id'    => 'vibe_wcm_plans', // field id and name
+                    'type'  => 'multiselect', // type of field
+                    'options' => $plans,
+                );
             }
-            $settings['vibe_wcm_plans'] = array(
-                'label' => __('Woocommerce memberships','wplms-wcm'), // <label>
-                'desc'  => __('Select woocommerce membership levels here','wplms-wcm'), // description
-                'id'    => 'vibe_wcm_plans', // field id and name
-                'type'  => 'multiselect', // type of field
-                'options' => $plans,
-            );
             return $settings;
         }
 
