@@ -113,7 +113,7 @@ if(!class_exists('Wplms_Wm_Class'))
                             $result = array_diff($metas, $user_membership_ids);
                             if(count($metas) == count($result)){
                                 //unsubscribe from course
-                                bp_course_remove_user_from_course($user_id,$course->course_id);
+                                update_user_meta($user_id,$course->course_id,time());
                             }
                         }
                     }
