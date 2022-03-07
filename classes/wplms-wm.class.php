@@ -141,9 +141,9 @@ if(!class_exists('Wplms_Wm_Class'))
             if(!empty( $membership_courses) && is_array($membership_courses) && wc_memberships_is_user_active_member($args['user_id'], $membership_plan->id )){
                 foreach($membership_courses as $course){
                     if(function_exists('bp_course_add_user_to_course') && function_exists('wplms_user_course_active_check')){
-                        if(!wplms_user_course_active_check($args['user_id'] ,$course->course_id )){
+                        //if(!wplms_user_course_active_check($args['user_id'] ,$course->course_id )){
                             bp_course_add_user_to_course($args['user_id'],$course->course_id ,$duration);
-                        }
+                        //}
                     }
                 }
            }
