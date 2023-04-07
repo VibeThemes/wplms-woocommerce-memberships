@@ -1,0 +1,13 @@
+* 1.2
+* php 8.1 error fix
+* 1.1
+* 4.0 ready
+* re-subscribing course on finish bug fix
+* Finalising
+* plugin init
+* 1.1
+* active / paused membership check
+* select course primary product fix
+* notice fixes and instantiate the class
+* 1.0
+* initialize
