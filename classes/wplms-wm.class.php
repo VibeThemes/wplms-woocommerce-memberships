@@ -250,7 +250,7 @@ if(!class_exists('Wplms_Wm_Class'))
         function add_wcm_membership_settings_frontend($settings){
             if(function_exists('wc_memberships_get_membership_plans')){
                 $wcm_plans = wc_memberships_get_membership_plans();
-                $palns = array();
+                $plans = array();
                 foreach($wcm_plans as $wcm_plan){
                     $plans[] = array('value'=>$wcm_plan->id,'label' => $wcm_plan->name);
                 }
@@ -295,7 +295,7 @@ if(!class_exists('Wplms_Wm_Class'))
 
 
                 $wcm_plans = wc_memberships_get_membership_plans();
-                $palns = array();
+                $plans = array();
                 foreach($wcm_plans as $wcm_plan){
                     $plans[] = array('value'=>$wcm_plan->id,'label' => $wcm_plan->name);
                 }
