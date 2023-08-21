@@ -73,11 +73,16 @@ if(!class_exists('Wplms_Wm_Class'))
                         if(!wplms_user_course_active_check($user_id ,$course_id )){
 
                             $access_length = get_post_meta( $membership_plan, '_access_length', true );
+                            if(empty($access_length)){
+                
+                                $access_length = get_post_meta( $membership_plan, '_subscription_access_length', true );
+                            }
+
                            $access_length = explode(' ',$access_length);
                            $access_duration = $access_length[0];
                            $access_duration_parameter_string = (isset($access_length[1])?$access_length[1]:$access_length[0]);
                            $access_duration_parameter = $this->access_length_into_sceonds($access_duration_parameter_string);
-                           $duration = $access_duration_parameter*$access_duration;
+                           $duration = intval($access_duration_parameter)*intval($access_duration);
                             bp_course_add_user_to_course($user_id,$course_id ,$duration);
                         }
                     }
